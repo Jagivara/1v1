@@ -2,6 +2,65 @@
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
+function F10(){
+    SpillerPoeng = 10;
+}
+
+function F30(){
+    SpillerPoeng = 30;
+}
+
+function F50(){
+    SpillerPoeng = 50;
+}
+
+function restart(){
+x = canvas.width/2 + 20;
+y = canvas.height/2 + 7.5;
+CX = canvas.width/2;
+CY = canvas.height/2 + 15;
+AIX = canvas.width/2 - 35;
+AIY = canvas.height/2 + 7.5;
+vx = 0;
+vy = 0;
+AX = 0;
+AY = 0;
+CXX = 0;
+CYY = 0;
+
+collision = x - CX;
+collisionRight = x + 15 - CX;
+collisionY = y - CY;
+collisionYDown = y + 15 - CY;
+
+collisionAI = AIX - CX;
+collisionRightAI = AIX + 15 - CX;
+collisionYAI = AIY - CY;
+collisionYDownAI = AIY + 15 - CY;
+
+collisionMålY = canvas.height/2 - 10 - CY;
+collisionMålXRød = 5 - CX;
+collisionMålXBlå = 268 - CX;
+
+spillerBlå = 0;
+spillerRød = 0;
+
+SpillerPoeng = 100000000000000000000000000000000;
+}
+
+function spiller(){
+    if (spillerBlå >= SpillerPoeng) {
+        ctx.fillStyle = "BLUE"
+        ctx.font = "30px Arial";
+        ctx.fillText("SpillerBlå vunnet", canvas.width/2 - 115, canvas.width/2 - 50);
+    }
+    if (spillerRød >= SpillerPoeng){
+        ctx.fillStyle = "RED"
+        ctx.font = "30px Arial";
+        ctx.fillText("SpillerRød vunnet", canvas.width/2 - 120, canvas.width/2 - 50);
+    }
+}
+
 function tekst(){
     ctx.font = "15px Arial";
     ctx.fillStyle = "WHITE";
@@ -66,6 +125,8 @@ let collisionMålXBlå = 268 - CX;
 let spillerBlå = 0;
 let spillerRød = 0;
 
+let SpillerPoeng = 100000000000000000000000000000000;
+
 function drawRect(){
     x += vx;
     y += vy;
@@ -121,11 +182,18 @@ function drawRect3(){
 
 function spilllaging(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    tekst()
+    tekst2()
+    spiller();
+    if (spillerBlå >= SpillerPoeng) {
+        return
+    }
+    if (spillerRød >= SpillerPoeng){
+        return
+    }
     drawRect2()
     drawRect3()
     drawCircle()
-    tekst()
-    tekst2()
     collision = CX - x;
     collisionRight = x + 15 - CX;
     collisionY = y - CY;

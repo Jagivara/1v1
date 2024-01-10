@@ -15,9 +15,29 @@
         width: 100%;
         height: 100%;
     }
+
+    .restart {
+        float: right;
+    }
 </style>
 <body>
     <canvas id="canvas" class="Canvas"></canvas>
+
+    <div>
+        <button onclick="F10()" class="F10">Første til 10 poeng</button>
+    </div>
+    
+    <div>
+        <button onclick="F30()" class="F30">Første til 30 poeng</button>
+    </div>
+    
+    <div>
+        <button onclick="F50()" class="F50">Første til 50 poeng</button>
+    </div>
+
+    <div>
+        <button onclick="restart()" class="restart">Start på nytt</button>
+    </div>
 </body>
 <script src="Spill.js"></script>
 <script src="Controll.js"></script>
